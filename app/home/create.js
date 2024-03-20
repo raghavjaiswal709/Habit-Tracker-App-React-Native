@@ -25,13 +25,13 @@ const Create = () => {
   const [reminder, setReminder] = useState(false);
   const [selectedDays, setSelectedDays] = useState([]);
   const colors = [
-    "#FF5733", // Red
-    "#FFD700", // Gold
-    "#5D76A9",
-    "#1877F2", // Medium Purple
-    "#32CD32", // Lime Green
-    "#CCCCFF", // Tomato
-    "#4169E1", // Royal Blue
+    "#FF6868", // Red
+    "#F5DD61", // Gold
+    "#F6D6D6",
+    "#86A7FC", // Medium Purple
+    "#58A399", // Lime Green
+    "#8E8FFA", // Tomato
+    "#F875AA", // Royal Blue
   ];
   const days = ["M", "T", "W", "T", "F", "S", "S"];
 
@@ -46,7 +46,7 @@ const Create = () => {
       };
 
       const response = await axios.post(
-        "http://10.5.73.68:3000/habits",
+        "http://10.5.72.63:3000/habits",
         habitDetails
       );
 
@@ -77,13 +77,14 @@ const Create = () => {
   };
 
   return (
-    <ScrollView style={{ padding: 10, backgroundColor:"#497abf"}}>
+    <ScrollView style={{ paddingLeft:20, paddingRight:20, backgroundColor:"#222831"}}>
 <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Ionicons name="arrow-back" size={24} color="white" />
+        <Ionicons name="arrow-back" size={44} color="white" />
       </TouchableOpacity>
-      <Text style={{ fontSize: 20, marginTop: 10 }}>
-        Create <Text style={{ fontSize: 20, fontWeight: "500" }}>Habit</Text>
+      <Text style={{ fontSize: 40,color:'#EEEEEE', padding: 90, fontWeight:"bold", marginTop: 10 }}>
+        Create <Text style={{ fontSize: 40, fontWeight:"bold", color:'#EEEEEE' }}>Habit</Text>
       </Text>
+      <View style={{ display: 'flex', justifyContent:"center", alignItems:'center' }}>
       <TextInput
         value={title}
         onChangeText={(text) => setTitle(text)}
@@ -98,7 +99,7 @@ const Create = () => {
       />
 
       <View style={{ marginVertical: 10 }}>
-        <Text style={{ fontSize: 18, fontWeight: "500" }}>Color</Text>
+        <Text style={{ fontSize: 18, color:'#EEEEEE', fontSize:25, paddingTop: 30, fontWeight: "500" }}>Give your habit a color</Text>
         <View
           style={{
             flexDirection: "row",
@@ -114,16 +115,16 @@ const Create = () => {
               activeOpacity={0.8}
             >
               {selectedColor === item ? (
-                <AntDesign name="plussquare" size={30} color={item} />
+                <AntDesign name="plussquare" size={55} color={item} />
               ) : (
-                <FontAwesome name="square" size={30} color={item} />
+                <FontAwesome name="square" size={55} color={item} />
               )}
             </TouchableOpacity>
           ))}
         </View>
       </View>
-
-      <Text style={{ fontSize: 18, fontWeight: "500" }}>Repeat</Text>
+      <View style={{width: "96%"}}>
+      <Text style={{ fontSize: 18, color:'#EEEEEE', fontSize:25, alignSelf:"flex-start", fontWeight: "500"  }}>Repeat</Text>
       <View
         style={{
           flexDirection: "row",
@@ -155,8 +156,9 @@ const Create = () => {
           <Text style={{ textAlign: "center" }}>Weekly</Text>
         </Pressable>
       </View>
-
-      <Text style={{ fontSize: 18, fontWeight: "500" }}>On these days</Text>
+      </View>
+          <View  style={{width: '95%'}}>
+      <Text style={{ fontSize: 18, color:'#EEEEEE', fontSize:25, alignSelf:"flex-start", fontWeight: "500"  }}>On these days</Text>
 
       <View
         style={{
@@ -170,8 +172,8 @@ const Create = () => {
           <Pressable
             onPress={() => toggleDay(item)}
             style={{
-              width: 40,
-              height: 40,
+              width: 47,
+              height: 47,
               borderRadius: 5,
               backgroundColor: selectedDays.includes(item)
                 ? "#AFDBF5"
@@ -194,7 +196,9 @@ const Create = () => {
           justifyContent: "space-between",
         }}
       >
-        <Text style={{ fontSize: 17, fontWeight: "500" }}>Reminder</Text>
+        </View>
+        <View style={{display:'flex', flexDirection:'row', justifyContent:"space-between"}}>
+        <Text style={{ fontSize: 18, color:'#EEEEEE', fontSize:25, alignSelf:"flex-start", fontWeight: "500"  }}>Reminder</Text>
         <Switch
           trackColor={{ false: "#767577", true: "#81b0ff" }}
           thumbColor={reminder ? "#f5dd4b" : "#f4f3f4"}
@@ -202,23 +206,26 @@ const Create = () => {
           onValueChange={() => setReminder(!reminder)}
           value={reminder}
         />
+        </View>
       </View>
 
       <Pressable
         onPress={addHabit}
         style={{
           marginTop: 25,
-          backgroundColor: "#00428c",
-          padding: 10,
+          backgroundColor: "#76ABAE",
+          paddingVertical: 20,
+          width:400,
           borderRadius: 8,
         }}
       >
         <Text
-          style={{ textAlign: "center", color: "white", fontWeight: "bold" }}
+          style={{ textAlign: "center", fontSize:25, color: "white", fontWeight: "bold" }}
         >
           SAVE
         </Text>
       </Pressable>
+      </View>
     </ScrollView>
   );
 };

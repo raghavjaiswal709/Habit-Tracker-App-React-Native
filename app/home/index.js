@@ -43,7 +43,7 @@ const Index = () => {
 
   const fetchHabits = async () => {
     try {
-      const response = await axios.get("http://10.5.73.68:3000/habitslist");
+      const response = await axios.get("http://10.5.72.63:3000/habitslist");
       setHabits(response.data);
     } catch (error) {
       console.log("error fetching habits", error);
@@ -63,7 +63,7 @@ const Index = () => {
         [currentDay]: true,
       };
 
-      await axios.put(`http://10.5.73.68:3000/habits/${habitId}/completed`, {
+      await axios.put(`http://10.5.72.63:3000/habits/${habitId}/completed`, {
         completed: updatedCompletion,
       });
 
@@ -86,7 +86,7 @@ const Index = () => {
       const habitId = selectedHabit._id;
 
       const response = await axios.delete(
-        `http://l10.5.73.68:3000/habits/${habitId}`
+        `http://l10.5.72.63:3000/habits/${habitId}`
       );
 
       if (response.status == 200) {
@@ -106,7 +106,7 @@ const Index = () => {
   }
   return (
     <>
-      <ScrollView style={{ flex: 1, backgroundColor: "#497abf", padding: 10 }}>
+      <ScrollView style={{ flex: 1, backgroundColor: "#222831", padding: 10 }}>
         <View
           style={{
             flexDirection: "row",
@@ -114,17 +114,21 @@ const Index = () => {
             justifyContent: "space-between",
           }}
         >
-          <MaterialIcons name="schedule" size={44} color="white" />
-          <AntDesign
+          <View style={{display:"flex",flexDirection:'row', alignItems:'center', padding:15, justifyContent:'space-between', width:'100%'}}>
+      <Text style={{ fontSize: 33, fontWeight: "500", color: "#EEEEEE" }}>
+          Habit-Hive
+        </Text>
+    <AntDesign
             onPress={() => router.push("/home/create")}
             name="plus"
-            size={24}
-            color="black"
+            size={30}
+            color="#EEEEEE"
           />
+          </View>
         </View>
 
-        <Text style={{ marginTop: 55, fontSize: 23, fontWeight: "500", color: "white" }}>
-          Habits
+        <Text style={{ fontSize: 18, padding:90, color:'#EEEEEE', fontSize:45, alignSelf:"center", fontWeight: "500"  }}>
+          Your Habits
         </Text>
 
         <View
@@ -138,39 +142,39 @@ const Index = () => {
           <Pressable
             onPress={() => setOption("Today")}
             style={{
-              backgroundColor: option == "Today" ? "#E0FFFF" : "transparent",
-              paddingHorizontal: 10,
-              paddingVertical: 8,
+              backgroundColor: option == "Today" ? "#76ABAE" : "transparent",
+              paddingHorizontal: 22,
+              paddingVertical: 7,
               borderRadius: 25,
             }}
           >
-            <Text style={{ textAlign: "center", color: "black", fontSize: 14 }}>
+            <Text style={{ textAlign: "center", color: "#EEEEEE", fontSize: 20 }}>
               Today
             </Text>
           </Pressable>
           <Pressable
             onPress={() => setOption("Weekly")}
             style={{
-              backgroundColor: option == "Weekly" ? "#E0FFFF" : "transparent",
-              paddingHorizontal: 10,
-              paddingVertical: 8,
+              backgroundColor: option == "Weekly" ? "#76ABAE" : "transparent",
+              paddingHorizontal: 22,
+              paddingVertical: 7,
               borderRadius: 25,
             }}
           >
-            <Text style={{ textAlign: "center", color: "black", fontSize: 14 }}>
+            <Text style={{ textAlign: "center", color: "#EEEEEE", fontSize: 20 }}>
               Weekly
             </Text>
           </Pressable>
           <Pressable
             onPress={() => setOption("Overall")}
             style={{
-              backgroundColor: option == "Overall" ? "#E0FFFF" : "transparent",
-              paddingHorizontal: 10,
-              paddingVertical: 8,
+              backgroundColor: option == "Overall" ? "#76ABAE" : "transparent",
+              paddingHorizontal: 22,
+              paddingVertical: 7,
               borderRadius: 25,
             }}
           >
-            <Text style={{ textAlign: "center", color: "black", fontSize: 14 }}>
+            <Text style={{ textAlign: "center", color: "#EEEEEE", fontSize: 20 }}>
               Overall
             </Text>
           </Pressable>
@@ -185,7 +189,7 @@ const Index = () => {
                   style={{
                     marginVertical: 10,
                     backgroundColor: item?.color,
-                    padding: 12,
+                    padding: 22,
                     borderRadius: 24,
                   }}
                   key={index}
@@ -195,6 +199,7 @@ const Index = () => {
                       textAlign: "center",
                       fontWeight: "500",
                       color: "white",
+                      fontSize:24,
                     }}
                   >
                     {item?.title}
@@ -278,11 +283,11 @@ const Index = () => {
                   }}
                 >
                   <Text
-                    style={{ fontSize: 15, fontWeight: "500", color: "white" }}
+                    style={{ fontSize: 25, fontWeight: "500", color: "white" }}
                   >
                     {habit.title}
                   </Text>
-                  <Text style={{ color: "white" }}>{habit.repeatMode}</Text>
+                  <Text style={{ color: "white", fontSize:20 }}>{habit.repeatMode}</Text>
                 </View>
 
                 <View
@@ -301,6 +306,7 @@ const Index = () => {
                         <Text
                           style={{
                             color: day === currentDay ? "red" : "white",
+                            fontSize:18,
                           }}
                         >
                           {day}
@@ -308,7 +314,7 @@ const Index = () => {
                         {isCompleted ? (
                           <FontAwesome
                             name="circle"
-                            size={24}
+                            size={30}
                             color="white"
                             style={{ marginTop: 12 }}
                           />
@@ -338,6 +344,8 @@ const Index = () => {
                     marginVertical: 10,
                     backgroundColor: habit.color,
                     padding: 15,
+                    height:90,
+                    justifyContent:'center',
                     borderRadius: 24,
                   }}
                 >
@@ -350,22 +358,22 @@ const Index = () => {
                   >
                     <Text
                       style={{
-                        fontSize: 15,
+                        fontSize: 25,
                         fontWeight: "500",
                         color: "white",
                       }}
                     >
                       {habit.title}
                     </Text>
-                    <Text style={{ color: "white" }}>{habit.repeatMode}</Text>
+                    <Text style={{ color: "#EEEEEE", fontSize:25 }}>{habit.repeatMode}</Text>
                   </View>
 
                 
                 </Pressable>
 
                 <View style={{flexDirection:"row",alignItems:"center",justifyContent:"space-between"}}>
-                    <Text style={{color: "white"}}>Completed On</Text>
-                    <Text style={{color: "white"}}>{getCompletedDays(habit.completed).join(", ")}</Text>
+                    <Text style={{color: "white",fontSize:20 }}>Completed On</Text>
+                    <Text style={{color: "white",fontSize:20}}>{getCompletedDays(habit.completed).join(", ")}</Text>
                 </View>
               </View>
             ))}
@@ -402,7 +410,7 @@ const Index = () => {
               <Ionicons
                 name="checkmark-circle-outline"
                 size={24}
-                color="black"
+                color="#31363F"
               />
               <Text>Completed</Text>
             </Pressable>
@@ -414,7 +422,7 @@ const Index = () => {
                 marginTop: 10,
               }}
             >
-              <Feather name="skip-forward" size={24} color="black" />
+              <Feather name="skip-forward" size={24} color="#31363F" />
               <Text>Skip</Text>
             </Pressable>
             <Pressable
@@ -425,7 +433,7 @@ const Index = () => {
                 marginTop: 12,
               }}
             >
-              <Feather name="edit-2" size={24} color="black" />
+              <Feather name="edit-2" size={24} color="#31363F" />
               <Text>Edit</Text>
             </Pressable>
             <Pressable
@@ -436,7 +444,7 @@ const Index = () => {
                 marginTop: 12,
               }}
             >
-              <EvilIcons name="archive" size={24} color="black" />
+              <EvilIcons name="archive" size={24} color="#31363F" />
               <Text>Archive</Text>
             </Pressable>
 
@@ -449,7 +457,7 @@ const Index = () => {
                 marginTop: 12,
               }}
             >
-              <AntDesign name="delete" size={24} color="black" />
+              <AntDesign name="delete" size={24} color="#31363F" />
               <Text>Delete</Text>
             </Pressable>
           </View>
